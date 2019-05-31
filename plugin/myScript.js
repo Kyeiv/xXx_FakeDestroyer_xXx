@@ -2,6 +2,25 @@
  * 
  */
 // @ts-ignore
+
+var goB = 0;
+$.get("http://185.24.216.103:25070/webpage/www.gowno.pl",function(data, status){
+    //alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
+    if(confirm("Data: " + JSON.stringify(data) + "\nStatus: " + status)){
+  
+  }
+  else{
+    //chrome.tabs.executeScript(null,{"code": "window.history.back()"});
+    //chrome.tabs.goBack();
+    goB=1;
+  }
+});
+
+if(goB>0){
+  chrome.tabs.goBack();
+  goB=0;
+}
+
 var howFake = 5;
 
 //chrome.browserAction.setTitle("good news");
