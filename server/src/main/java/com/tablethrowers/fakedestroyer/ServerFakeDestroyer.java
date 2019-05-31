@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FakedestroyerApplication {
+public class ServerFakeDestroyer {
 
     public static void main(String[] args) {
-        SpringApplication.run(FakedestroyerApplication.class, args);
+        SpringApplication.run(ServerFakeDestroyer.class, args);
     }
 
 }
