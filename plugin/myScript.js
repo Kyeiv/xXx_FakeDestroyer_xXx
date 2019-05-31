@@ -21,7 +21,7 @@ if(goB>0){
   goB=0;
 }
 
-var howFake = 5;
+var howFake = 2;
 
 //chrome.browserAction.setTitle("good news");
 if(howFake>3){
