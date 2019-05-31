@@ -74,4 +74,17 @@ public class DataAccessObject implements IDataAccessObject {
 
         return results;
     }
+
+    @Transactional
+    @Override
+    public <T> void updateIntegerValueByStringValue(Class<T>c, String uKey, int uValue, String pKey, String pValue){
+        Session session = entityManager.unwrap(Session.class);
+        Query<T> query = session.createQuery("update :tableName set :upKey = :upVal where :paramKey = :paramVal");
+        query.setParameter("tableName", c.getSimpleName())
+                .setParameter("upKey", uKey)
+                .setParameter("upVal", uValue)
+                .setParameter("paramKey", pKey)
+                .setParameter("paramVal", pValue)
+                .executeUpdate();
+    }
 };
