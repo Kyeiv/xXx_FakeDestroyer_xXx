@@ -1,15 +1,14 @@
 // Copyright 2018 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-// $.get(URL,data,function(data,status,xhr),dataType)//server,co wysyłamy podczas zapytania, funkcja przy odebraniu zapytania, przyjmowane dane od servera
-//https://d21b7108-22c7-4a61-b951-09ae108d206b.mock.pstmn.io
-'use strict';
 
+'use strict';
 
 var btnSend = document.getElementById('send');
 var btnFake = document.getElementById('fake');
 var btnNoFake = document.getElementById('nofake');
 var togBckGr = document.getElementById('togBckGr')
+var flagColor = false;
 
 btnSend.addEventListener("click", function(){
   alert("Hello! You clicked send button");
@@ -38,8 +37,10 @@ btnNoFake.addEventListener("click", function(){
 })
 
 togBckGr.addEventListener("click", function(){
-    if(document.body.style.background=="gray")
+    if(flagColor==true)
       {	
+        flagColor=false;
+        console.log("1");
         document.body.style.background="#FdFdFd";
         var text = document.getElementsByClassName('ptag');
         for(var i=0; i<text.length; i++){
@@ -53,7 +54,9 @@ togBckGr.addEventListener("click", function(){
       }
     else
       {
-        document.body.style.background="gray";
+        flagColor=true;
+        console.log("0");
+        document.body.style.background="#404040";
         var text = document.getElementsByClassName('ptag');
         for(var i=0; i<text.length; i++){
           text[i].style.color = "white";
