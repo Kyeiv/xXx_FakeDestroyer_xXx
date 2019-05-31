@@ -4,4 +4,18 @@
 
 'use strict';
 
+var btnSend = document.getElementById('send');
+var btnFake = document.getElementById('fake');
+var btnNoFake = document.getElementById('nofake');
 
+btnSend.addEventListener("click", function(){
+  alert("Hello! You clicked send button");
+})
+
+btnFake.addEventListener("click", function(){
+  alert("Hello! You clicked fake button");
+})
+
+btnNoFake.addEventListener("click", function(){
+  alert("Hello! You clicked nofake button");
+})
