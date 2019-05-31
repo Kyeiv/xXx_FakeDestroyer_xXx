@@ -14,23 +14,39 @@ btnSend.addEventListener("click", function(){
 })
 
 btnFake.addEventListener("click", function(){
-  alert("Hello! You clicked fake button");
+  if(btnNoFake.disabled==true)
+    {
+      btnNoFake.disabled=false;
+      btnNoFake.classList.remove("btnClicked");
+    }
+        btnFake.disabled=true;
+  		btnFake.classList.add("btnClicked");
+ // alert("Hello! You clicked fake button");
 })
 
 btnNoFake.addEventListener("click", function(){
-  alert("Hello! You clicked nofake button");
+  if(btnFake.disabled==true)
+    {
+      btnFake.disabled=false;
+      btnFake.classList.remove("btnClicked");
+    }
+        btnNoFake.disabled=true;
+  		btnNoFake.classList.add("btnClicked");
+ // alert("Hello! You clicked nofake button");
 })
 
 togBckGr.addEventListener("click", function(){
     if(document.body.style.background=="gray")
       {	
-        document.body.style.background="white";
+        document.body.style.background="#FdFdFd";
         var text = document.getElementsByClassName('ptag');
         for(var i=0; i<text.length; i++){
           text[i].style.color = "black";
         }
         document.getElementById('descr').style.backgroundColor='white';
-        //window.colorTab=["green","red"]
+        document.getElementById('descr').style.borderColor = "lightgray";
+       	window.colorTab[0]="green";
+        window.colorTab[1]="red";
         console.log(window.colorTab);
       }
     else
@@ -41,6 +57,7 @@ togBckGr.addEventListener("click", function(){
           text[i].style.color = "white";
         }
         document.getElementById('descr').style.backgroundColor='#A7A7A7';
+        document.getElementById('descr').style.borderColor = "black";
        	window.colorTab[0]="yellow";
         window.colorTab[1]="orange";
         console.log(window.colorTab);
