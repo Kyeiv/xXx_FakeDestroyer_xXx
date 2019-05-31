@@ -1,5 +1,6 @@
 package com.tablethrowers.fakedestroyer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Comment {
     @Column(name="dislikes")
     private int dislikes;
 
+    @JsonIgnore
     @JoinColumn(name="webpage_id")
     @ManyToOne
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
