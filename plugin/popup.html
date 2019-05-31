@@ -12,23 +12,11 @@
       text-align: center;
     }
 
-    button {
-      height: 30px;
-      width: 30px;
-      outline: none;
-    }
-
-    button.btnFk {
-      height: 40px;
-      width: 100px;
-      outline: none;
-      margin: 10px;
-    }
-
     textarea.description {
       width: 220px;
       height: 60px;
       margin: 10px;
+      border-radius:4px;
     }
 
     button.btnSend {
@@ -36,19 +24,38 @@
       height: 40px;
       margin: 10px;
     }
+    p.logo{
+        position: relative;
+  		display: inline-block;
+      	left: 0px;
+      	margin-top:-10px;
+    }
+    
   </style>
+  <link rel="stylesheet" type="text/css" href="switch_style.css">
+  <link rel="stylesheet" type="text/css" href="button_style.css">
+
 </head>
 <body>
-  <canvas id="myCanvas"></canvas>
-  <script type="text/javascript" src="script.js"></script>
-  <script type="text/javascript" src="script.js"></script>
-  <p>This site is fake or not fake ?</p>
-  <button id="fake" class="btnFk">Fake</button>
-  <button id="nofake" class="btnFk">NoFake</button>
-  <p>You can express opinion</p>
-  <textarea rows="4" cols="50" class="description"></textarea>
-  <button id="send" class="btnSend">Send</button>
+  <div class="header">
+  <p class="logo ptag">Fake Destroyer !</p>
+  <label class="switch">
+  <input type="checkbox" id="togBckGr">
+  <span class="slider round"></span>
+	</label>
+  </div>
+
+
+  <canvas id="myCanvas" style="margin-top:-50px;"></canvas>
+  <p class="ptag">This site is fake or not fake ?</p>
+  <button id="fake" class="myButton">Fake</button>
+  <button id="nofake" class="myButton">NoFake</button>
+  <p class="ptag">You can express opinion</p>
+  <textarea rows="4" cols="50" class="description" id="descr"></textarea>
+  <button id="send" class="btnSend myButton">Send</button>
   <script src="popup.js"></script>
+  <script type="text/javascript" src="script.js"></script>
+
 </body>
 
 </html>

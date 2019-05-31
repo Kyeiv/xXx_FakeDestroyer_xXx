@@ -2,7 +2,7 @@
  * 
  */
 // @ts-ignore
-var howFake = 5;
+var howFake = 2;
 
 //chrome.browserAction.setTitle("good news");
 if(howFake>3){
