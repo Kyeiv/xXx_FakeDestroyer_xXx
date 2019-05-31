@@ -12,3 +12,17 @@
       actions: [new chrome.declarativeContent.ShowPageAction()]
     }]);
   });
+  
+  chrome.runtime.onMessage.addListener(function(response, sender, sendResponse){
+  
+  //chrome.browserAction.setTitle("good news");  
+  
+  if(confirm(response)){
+  
+  }
+  else{
+    //chrome.tabs.executeScript(null,{"code": "window.history.back()"});
+    chrome.tabs.goBack();
+  }
+  	
+});
