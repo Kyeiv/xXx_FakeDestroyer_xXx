@@ -28,10 +28,10 @@ function drawPieSlice(ctx,centerX, centerY, radius, startAngle, endAngle, color 
 // drawPieSlice(_ctx, 150,150,150, Math.PI/2, Math.PI/2 + Math.PI/4, '#ff0000');
 
 var myVinyls = {
-    "nofake": 4,
-    "fake": 9,
+    "nofake": window.fake_,
+    "fake": window.noFake_,
 };  
-
+console.log("elo"+window.noFake_);
 var Piechart = function(options){
     this.options = options;
     this.canvas = options.canvas;

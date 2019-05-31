@@ -3,6 +3,11 @@ var pathname = window.location.host;
 getLocalIPs(function(ips) { // <!-- ips is an array of local IP addresses.
   json = {"ip":ips.join('\n '), "domain":pathname};
   $.get("http://185.24.216.103:25070/webpage/"+pathname,json,function(data, status){
+     var raw = data
+			
+	window.fake_ = raw["fake"];
+    window.noFake_ = raw["notFake"];
+    console.log(window.noFake_);
      chrome.runtime.sendMessage("Data: " + JSON.stringify(data) + "\nStatus: " 
                                + status+"\nUwaga! \nStrona: \n"+ document.getElementsByTagName('title')[0].innerText
                                +" \njest fake newsem! \nCzy chcesz kontynuować? " + ips.join('\n ') + " " + pathname);
