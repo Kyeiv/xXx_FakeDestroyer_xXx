@@ -2,12 +2,13 @@
 <html>
 
 <head>
-    <script src="jquery-3.4.1.min.js"></script>
+  <script src="jquery-3.4.1.min.js"></script>
+
   <style>
     body {
       padding: 10px 20px 10px 20px;
       text-align: center;
-      background-color:#fafafa;
+      background-color: #fafafa;
     }
 
     p {
@@ -18,52 +19,53 @@
       width: 220px;
       height: 60px;
       margin: 10px;
-      border-radius:4px;
-      border-width:thin;
-      border-color:lightgray;
+      border-radius: 4px;
+      border-width: thin;
+      border-color: lightgray;
       resize: none;
     }
 
-    p.logo{
-        position: absolute;
-  		display: inline-block;
-      	left: 25px;
-      	top: -5px;
-      	font-size:16px;
-      	font-weight:bold;
-    }
-    image{
+    p.logo {
       position: absolute;
-      left:5px;
+      display: inline-block;
+      left: 25px;
+      top: -5px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    image {
+      position: absolute;
+      left: 5px;
       top: 5px;
     }
-    
   </style>
   <link rel="stylesheet" type="text/css" href="switch_style.css">
   <link rel="stylesheet" type="text/css" href="button_style.css">
   <link rel="stylesheet" type="text/css" href="slider_style.css">
 
 </head>
+
 <body>
   <div class="header">
-  <p class="logo ptag">Fake Destroyer !</p>
-  <label class="switch" >
-  <input type="checkbox" id="togBckGr">
-  <span class="slider round"></span>
-	</label>
+    <p class="logo ptag">Fake Destroyer !</p>
+    <label class="switch">
+      <input type="checkbox" id="togBckGr">
+      <span class="slider round"></span>
+    </label>
   </div>
-  <canvas id="myCanvas" style="margin-top:-50px;margin-left: 28px;"></canvas>
-  <p class="ptag" id="opinion">You can express opinion:</p>
+  <canvas id="myCanvas" style="margin-top:20px;"></canvas>
+  <p class="ptag" id="opinion" style="margin-top:30px">You can express opinion:</p>
   <textarea rows="4" cols="50" class="description" id="descr"></textarea>
   <p class="ptag">This site is fake or not fake ?</p>
   <button id="fake" class="myButton">Fake</button>
   <button id="nofake" class="myButton">NoFake</button>
   <div class="slidecontainer">
-      <p>   Your toleration: <span id="demo"></span>%</p>
-      <input type="range" min="1" max="100" value="50" id="myRange">
-    </div>
-  <script src="popup.js"></script>
-  <script src="chart.js"></script>
+    <p style="top:150px;"> Your toleration: <span id="demo"></span>%</p>
+    <input type="range" min="1" max="100" value="50" id="myRange">
+  </div>
 </body>
+<script src="popup.js"></script>
+<script src="chart.js"></script>
 
 </html>

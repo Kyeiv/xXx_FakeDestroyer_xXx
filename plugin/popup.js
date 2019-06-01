@@ -31,8 +31,8 @@ getLocalIPs(function(ips) {
 		x.appendChild(t);                                           // Append the text to <p>
 		document.body.appendChild(x);                               // Append <p> to <body>
         x.style.position = "absolute";
-        x.style.top = "105px";
-        x.style.left = "103px";
+        x.style.top = "150px";
+        x.style.left = "112px";
 
   });
    });
