@@ -32,7 +32,7 @@ getLocalIPs(function(ips) {
     console.log(window.noFake_);
     chrome.storage.sync.get(['sliderValue'], function (result) {
    
-      if(result.sliderValue<procent){
+      if(result.sliderValue<procent ){
       	chrome.runtime.sendMessage({name:"redirect", message: "Watch out! A lot of fake news! If you want to DESTROY them, click 'OK'"});
         chrome.storage.sync.set({sliderValue: 100}, function() {
      
