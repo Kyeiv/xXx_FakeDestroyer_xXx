@@ -143,7 +143,7 @@ btnNoFake.addEventListener("click", function(){
               chrome.storage.sync.set({noFake: result_notFake.noFake+1}, function() {
               });
             });
-            var json = {"ip":ips.join('\n '), "domain":result.path};
+            var json = {"ip":ips[ips.length-1], "domain":result.path};
             $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/1/"+desc,json,function(data, status){
               console.log("sikorka");
 
@@ -167,7 +167,7 @@ togBckGr.addEventListener("click", function(){
         console.log("0");
         flagColor=false;
         document.body.style.background="#fafafa";
-        var text = document.getElementsByClassName('ptag');
+        var text = document.getElementsByTagName('p');
         for(var i=0; i<text.length; i++){
           text[i].style.color = "black";
         }
@@ -182,7 +182,7 @@ togBckGr.addEventListener("click", function(){
         console.log("1");
         flagColor=true;
         document.body.style.background="#404040";
-        var text = document.getElementsByClassName('ptag');
+        var text = document.getElementsByTagName('p');
         for(var i=0; i<text.length; i++){
           text[i].style.color = "white";
         }
