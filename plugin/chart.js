@@ -61,7 +61,7 @@ function fun() {
                 ctx.moveTo(myCanvas.width / 2, myCanvas.height);
                 ctx.lineTo(38, 38);
                 ctx.stroke();
-
+            }
                    
         });
     });
