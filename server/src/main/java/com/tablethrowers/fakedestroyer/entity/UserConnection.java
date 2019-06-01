@@ -70,4 +70,14 @@ public class UserConnection {
         WebPage oldWebPage = this.webPage;
         this.webPage = webPage;
     }
+
+    @Override
+    public String toString() {
+        return "UserConnection{" +
+                "id=" + id +
+                ", timestamp=" + timestamp +
+                ", ip='" + ip + '\'' +
+                ", webPage=" + webPage +
+                '}';
+    }
 }

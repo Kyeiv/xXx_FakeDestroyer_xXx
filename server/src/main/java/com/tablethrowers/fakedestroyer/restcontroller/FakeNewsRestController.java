@@ -83,30 +83,38 @@ public class FakeNewsRestController {
     public void markWebPage(@PathVariable String url, @PathVariable int value, @PathVariable String comment, @RequestParam String ip, @RequestParam String domain){
 
         System.out.println("WESZŁO DO OCENIANIA STRONY");
+        System.out.println("URL: " + url + " IP: " + ip + " DOMAIN: " + domain);
 
         List<UserConnection> userLogs = dataAccessObject.getByStringValue(UserConnection.class, "ip", ip);
+
         UserConnection userConnection = null;
 
         Boolean canMark = false;
+        Boolean createNewObject = false;
+        Boolean isSet = false;
 
         if(!userLogs.isEmpty()) {
             for (UserConnection uc : userLogs) {
                 if (uc.getWebPage().getPage_url().equals(url))
                     if (uc.getTimestamp() + 86400000L > new Date().getTime()) {
                         canMark = false;
+                        isSet = true;
                         break;
                     } else {
                         userConnection = uc;
                         canMark = true;
+                        isSet=true;
+                        break;
                     }
+            }
+            if(!isSet) {
+                canMark = true;
+                createNewObject = true;
             }
         } else {
             canMark = true;
+            createNewObject = true;
         }
-
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Access-Control-Allow-Origin", "*");
-        responseHeaders.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
         if(!canMark)
             return;
@@ -133,7 +141,7 @@ public class FakeNewsRestController {
             webPage.setNotFake(webPage.getNotFake() + 1);
         }
 
-        if(userLogs.isEmpty()){
+        if(createNewObject){
             userConnection = new UserConnection();
             userConnection.setId(0);
         }
