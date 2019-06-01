@@ -83,9 +83,17 @@ function fun() {
         chrome.storage.sync.get(['noFake'], function (result) {
             noFake = result.noFake;
 
-            console.log(fake);
-            console.log(noFake);
+            //console.log(fake);
+            //console.log(noFake);
 
+          var proc;
+          if(!fake){
+            proc = 0;
+          }
+          else{
+            proc = fake/(fake+noFake)*100;
+          }
+          console.log(proc+"% fake news!");
             var myVinyls = {
                 "nofake": noFake,
                 "fake": fake
@@ -97,7 +105,7 @@ function fun() {
                     colors: colorTab
                 }
             );
-            console.log("refresh");
+            //console.log("refresh");
             myPiechart.draw();
         });
     });

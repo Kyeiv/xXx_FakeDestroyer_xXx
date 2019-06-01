@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <script src="jquery-3.4.1.min.js"></script>
   <style>
     body {
       padding: 10px 20px 10px 20px;
@@ -46,14 +47,13 @@
 	</label>
   </div>
   <canvas id="myCanvas" style="margin-top:-50px;margin-left: 28px;"></canvas>
-  <p class="ptag">You can express opinion:</p>
+  <p class="ptag" id="opinion">You can express opinion:</p>
   <textarea rows="4" cols="50" class="description" id="descr"></textarea>
   <p class="ptag">This site is fake or not fake ?</p>
   <button id="fake" class="myButton">Fake</button>
   <button id="nofake" class="myButton">NoFake</button>
   <script src="popup.js"></script>
   <script src="chart.js"></script>
-
 </body>
 
 </html>

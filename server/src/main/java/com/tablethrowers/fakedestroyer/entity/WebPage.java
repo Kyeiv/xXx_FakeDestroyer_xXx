@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name="webpages")
-public class WebPage {
+public class WebPage implements Comparable<WebPage>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -109,5 +109,21 @@ public class WebPage {
             return;
         comments.remove(comment);
         comment.setWebPage(null);
+    }
+
+    @Override
+    public String toString() {
+        return "WebPage{" +
+                "id=" + id +
+                ", page_url='" + page_url + '\'' +
+                ", fake=" + fake +
+                ", notFake=" + notFake +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(WebPage o) {
+        return Double.valueOf(Double.valueOf(notFake)/Double.valueOf(notFake+fake)).compareTo(Double.valueOf(Double.valueOf(o.getNotFake())/Double.valueOf(o.getNotFake() + o.getFake())));
     }
 }
