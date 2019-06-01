@@ -279,7 +279,7 @@ public class FakeNewsRestController {
             wpw.setFake(wp.getFake());
             wpw.setNotFake(wp.getNotFake());
             wpw.setPageUrl(wp.getPage_url());
-            wpw.setRatio(Double.valueOf(wpw.getFake())/Double.valueOf(wpw.getFake() + wpw.getNotFake()));
+            wpw.setRatio(zaokraglanieDouble(Double.valueOf(wpw.getNotFake())/Double.valueOf(wpw.getFake() + wpw.getNotFake()) * 100.0, 2));
             resultList2.add(wpw);
         }
 
@@ -289,5 +289,12 @@ public class FakeNewsRestController {
         responseHeaders.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
         return ResponseEntity.ok().headers(responseHeaders).body(resultList2);
+    }
+
+    public double zaokraglanieDouble(double val, int ileLiczbPoPrzecinku) {
+        long factor = (long) Math.pow(10, ileLiczbPoPrzecinku);
+        val = val * factor;
+        long tmp = Math.round(val);
+        return (double) tmp / factor;
     }
 };

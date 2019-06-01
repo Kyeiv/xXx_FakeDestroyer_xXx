@@ -3,6 +3,7 @@ var myCanvas = document.getElementById("myCanvas");
 myCanvas.width = 150;
 myCanvas.height = 150;
 var _ctx = myCanvas.getContext("2d");
+var statText = document.getElementById("stat");
 
 function drawLine(ctx, startX, startY, endX, endY) {
     ctx.beginPath();
