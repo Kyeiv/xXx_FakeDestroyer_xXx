@@ -16,8 +16,10 @@
   chrome.runtime.onMessage.addListener(function(response, sender, sendResponse){
   
   if(confirm(response)){
-  	alert("ZOSTAJESZ TUTAJ NA WŁASNĄ ODPOWIEDZIALNOŚĆ!")
-   document.location.reload(true);
+    window.location.reload("popup.html");
+    alert("ZOSTAJESZ TUTAJ NA WŁASNĄ ODPOWIEDZIALNOŚĆ!")
+    
+  // document.location.reload(true);
   }
   else{
     chrome.tabs.goBack();
