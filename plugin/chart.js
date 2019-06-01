@@ -83,6 +83,9 @@ var slider = document.getElementById("myRange");
         
         slider.oninput = function() {
           output.innerHTML = slider.value;
+          chrome.storage.sync.set({sliderValue: slider.value}, function() {
+     
+    });
         }
 
 window.colorTab = ["green", "red"];

@@ -25,14 +25,22 @@ getLocalIPs(function(ips) {
      else{
       procc = fak/(fak+nfak)*100;
      }
-      console.log(procc+"% fake news!");
+      console.log(procc.toFixed(0)+"% fake news!");
+     
       var x = document.createElement("P");                        // Create a <p> element
-	  var t = document.createTextNode(procc+"% fake news!");    // Create a text node
+	  var t = document.createTextNode(procc.toFixed(0)+"% fake news!");    // Create a text node
 		x.appendChild(t);                                           // Append the text to <p>
 		document.body.appendChild(x);                               // Append <p> to <body>
         x.style.position = "absolute";
         x.style.top = "105px";
         x.style.left = "103px";
+    
+    var slider = document.getElementById("myRange");
+	var max = slider.value;
+    
+    if(max>procc){
+      window.stop();
+    }
 
   });
    });
