@@ -1,91 +1,37 @@
-console.log("start chart.js");
 var myCanvas = document.getElementById("myCanvas");
-myCanvas.width = 150;
-myCanvas.height = 150;
-var _ctx = myCanvas.getContext("2d");
+var ctx = myCanvas.getContext("2d");
 var statText = document.getElementById("stat");
-
-function drawLine(ctx, startX, startY, endX, endY) {
-    ctx.beginPath();
-    ctx.moveTo(startX, startY);
-    ctx.lineTo(endX, endY);
-    ctx.stroke();
-}
-function drawArc(ctx, centerX, centerY, radius, startAngle, endAngle) {
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-    ctx.stroke();
-}
-function drawPieSlice(ctx, centerX, centerY, radius, startAngle, endAngle, color) {
-    ctx.fillStyle = color;
-    ctx.beginPath();
-    ctx.moveTo(centerX, centerY);
-    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-    ctx.closePath();
-    ctx.fill();
-}
-// drawLine(_ctx,100,100,200,200);
-// drawArc(_ctx, 150,150,150, 0, Math.PI/3);
-// drawPieSlice(_ctx, 150,150,150, Math.PI/2, Math.PI/2 + Math.PI/4, '#ff0000');
-
-
-// console.log("dupa1");
-// if (window.fake_ == null) {
-//     console.log("dupa2");
-//     window.fake_ = 6;
-//     window.noFake_ = 9;
-// }
-
-var Piechart = function (options) {
-    this.options = options;
-    this.canvas = options.canvas;
-    this.ctx = this.canvas.getContext("2d");
-    this.colors = options.colors;
-
-    this.draw = function () {
-        var total_value = 0;
-        var color_index = 0;
-        for (var categ in this.options.data) {
-            var val = this.options.data[categ];
-            total_value += val;
-        }
-
-        var start_angle = 0;
-        for (categ in this.options.data) {
-            val = this.options.data[categ];
-            var slice_angle = 2 * Math.PI * val / total_value / 2;
-
-            drawPieSlice(
-                this.ctx,
-                this.canvas.width / 2,
-                this.canvas.height / 2,
-                Math.min(this.canvas.width / 2, this.canvas.height / 2),
-                start_angle,
-                start_angle + slice_angle,
-                this.colors[color_index % this.colors.length]
-            );
-
-            start_angle += slice_angle;
-            color_index++;
-        }
-
-    }
-}
-setInterval("fun();", 50);
-
 var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-        slider.style.position = "absolute";
-        slider.style.left = "25px";
-        slider.style.width = "250px"
-        slider.style.bottom = "5px"
-        
-        slider.oninput = function() {
-          output.innerHTML = slider.value;
-        }
+var output = document.getElementById("demo");
 
-window.colorTab = ["green", "red"];
+$(document).ready(function () {
+    console.log("ready!");
+    myCanvas.width = 225;
+    myCanvas.height = 112;
+    setInterval("fun();", 50);
+
+    output.innerHTML = slider.value;
+    slider.style.position = "absolute";
+    slider.style.left = "25px";
+    slider.style.width = "250px"
+    slider.style.bottom = "5px"
+
+    slider.oninput = function () {
+      output.innerHTML = slider.value;
+      chrome.storage.sync.set({sliderValue: slider.value}, function() {
+     
+      });
+    }
+
+    chrome.storage.sync.get(['sliderValue'], function (result) {
+        if(result.sliderValue)
+        {
+            slider.value = result.sliderValue;
+            output.innerHTML = result.sliderValue;
+        }
+    });
+});
+        
 function fun() {
     var fake, noFake;
     chrome.storage.sync.get(['fake'], function (result) {
@@ -93,23 +39,32 @@ function fun() {
 
         chrome.storage.sync.get(['noFake'], function (result) {
             noFake = result.noFake;
+            
+            var pr;
+            if(!fake){
+                pr = 0;
+               }
+               else{
+                pr = fake/(fake+noFake)*100;
+               } 
+            var x = document.getElementById("rejtio");
+            x.innerHTML = pr.toFixed(0);  
 
-            var myVinyls = {
-                "nofake": noFake,
-                "fake": fake
-            };
-            window.myPiechart = new Piechart(
-                {
-                    canvas: myCanvas,
-                    data: myVinyls,
-                    colors: colorTab
-                }
-            );
-            //console.log("refresh");
-            myPiechart.draw();
+            drawing = new Image();
+            drawing.src = "images/polowka.png";
+            drawing.onload = function() {
+                ctx.drawImage(drawing,0,0,drawing.width, drawing.height, 0, 0, myCanvas.width, myCanvas.height);
+                ctx.beginPath();
+                ctx.lineWidth = 3;
+                ctx.lineCap = "round";
+                ctx.strokeStyle = "#555555";
+                ctx.moveTo(myCanvas.width / 2, myCanvas.height);
+                ctx.lineTo(38, 38);
+                ctx.stroke();
+
+                   
         });
     });
-
 }
 
 

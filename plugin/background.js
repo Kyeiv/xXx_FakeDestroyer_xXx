@@ -1,6 +1,4 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+
 
 'use strict';
 
@@ -15,14 +13,14 @@
   
   chrome.runtime.onMessage.addListener(function(response, sender, sendResponse){
   
-  if(confirm(response)){
-    window.location.reload("popup.html");
-    alert("ZOSTAJESZ TUTAJ NA WŁASNĄ ODPOWIEDZIALNOŚĆ!")
-    
-  // document.location.reload(true);
-  }
-  else{
-    chrome.tabs.goBack();
-  }
+    if(response.name == "redirect")
+      {
+        if(confirm(response.message))
+          {
+             chrome.tabs.update(sender.tab.id, {url: "https://www.youtube.com/embed/noY-Sd0DZqM?autoplay=1"});
+          }
+       
+      }
+ 
   	
 });
