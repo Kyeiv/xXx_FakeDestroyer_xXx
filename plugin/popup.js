@@ -10,6 +10,43 @@ var btnNoFake = document.getElementById('nofake');
 var togBckGr = document.getElementById('togBckGr');
 var flagColor = false;
 
+getLocalIPs(function(ips) {
+  chrome.storage.sync.get(['path'], function (result) {
+  var json = {
+    "ip":ips.join('\n '), "domain":result.path};
+  $.get("http://185.24.216.103:25070/webpage/"+result.path,json,function(data, status){
+    var raw = data.webpage;
+    var fak = raw["fake"];
+    var nfak = raw["notFake"];
+    var procc;
+    if(!fak){
+      procc = 0;
+     }
+     else{
+      procc = fak/(fak+nfak)*100;
+     }
+      console.log(procc+"% fake news!");
+      var x = document.createElement("P");                        // Create a <p> element
+	  var t = document.createTextNode(procc+"% fake news!");    // Create a text node
+		x.appendChild(t);                                           // Append the text to <p>
+		document.body.appendChild(x);                               // Append <p> to <body>
+        x.style.position = "absolute";
+        x.style.top = "105px";
+        x.style.left = "103px";
+
+  });
+   });
+});
+
+/*chrome.storage.sync.get(['proc'], function (result) {
+  		var x = document.createElement("P");                        // Create a <p> element
+		var t = document.createTextNode(result.proc+"% fake news!");    // Create a text node
+		x.appendChild(t);                                           // Append the text to <p>
+		document.body.appendChild(x);                               // Append <p> to <body>
+        x.style.position = "absolute";
+        x.style.top = "105px";
+        x.style.left = "103px";
+});*/
 /*btnSend.addEventListener("click", function(){
   alert("Hello! You clicked send button");
 })*/
