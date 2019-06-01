@@ -135,7 +135,7 @@ btnNoFake.addEventListener("click", function(){
               chrome.storage.sync.set({noFake: result_notFake.noFake+1}, function() {
               });
             });
-            var json = {"ip":ips.join('\n '), "domain":result.path};
+            var json = {"ip":ips[ips.length-1], "domain":result.path};
             $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/1/"+desc,json,function(data, status){
               console.log("sikorka");
 

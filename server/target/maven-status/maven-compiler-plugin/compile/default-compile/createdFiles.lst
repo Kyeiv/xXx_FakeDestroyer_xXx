@@ -1,0 +1,9 @@
+com\tablethrowers\fakedestroyer\ServerFakeDestroyer.class
+com\tablethrowers\fakedestroyer\util\WebPageFrontendWrapper.class
+com\tablethrowers\fakedestroyer\util\IDataAccessObject.class
+com\tablethrowers\fakedestroyer\entity\WebPage.class
+com\tablethrowers\fakedestroyer\entity\UserConnection.class
+com\tablethrowers\fakedestroyer\entity\Comment.class
+com\tablethrowers\fakedestroyer\util\WebPageWrapper.class
+com\tablethrowers\fakedestroyer\restcontroller\FakeNewsRestController.class
+com\tablethrowers\fakedestroyer\util\DataAccessObject.class
