@@ -257,14 +257,14 @@ public class FakeNewsRestController {
 
         List<Integer> indexes = new ArrayList<>();
 
-//        for(WebPage wp : webPages){
-//            if( wp.getNotFake() + wp.getFake() < 20 )
-//                indexes.add(webPages.indexOf(wp));
-//        }
-//
-//        for(int i = 0; i < indexes.size(); i++){
-//            webPages.remove(indexes.get(i)-i);
-//        }
+        for(WebPage wp : webPages){
+            if( wp.getNotFake() + wp.getFake() < 20 )
+                indexes.add(webPages.indexOf(wp));
+        }
+
+        for(int i = 0; i < indexes.size(); i++){
+            webPages.remove(indexes.get(i)-i);
+        }
 
         if(typ == 0)
             Collections.sort(webPages);
