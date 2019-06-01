@@ -4,6 +4,7 @@ import com.tablethrowers.fakedestroyer.entity.Comment;
 import com.tablethrowers.fakedestroyer.entity.UserConnection;
 import com.tablethrowers.fakedestroyer.entity.WebPage;
 import com.tablethrowers.fakedestroyer.util.IDataAccessObject;
+import com.tablethrowers.fakedestroyer.util.WebPageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -24,13 +25,32 @@ public class FakeNewsRestController {
      *
      */
     @GetMapping("/webpage/{url}")
-    public ResponseEntity<WebPage> getWebPageData(@PathVariable String url) {
+    public ResponseEntity<WebPageWrapper> getWebPageData(@PathVariable String url, @RequestParam String ip, @RequestParam String domain) {
 
         System.out.println("WESZŁO DO POBIERANIA DANYCH STRONY");
+
+        List<UserConnection> userLogs = dataAccessObject.getByStringValue(UserConnection.class, "ip", ip);
+
+        Boolean canMark = false;
+
+        if(!userLogs.isEmpty()) {
+            for (UserConnection uc : userLogs) {
+                if (uc.getWebPage().getPage_url().equals(url))
+                    if (uc.getTimestamp() + 86400000L > new Date().getTime()) {
+                        canMark = false;
+                        break;
+                    } else {
+                        canMark = true;
+                    }
+            }
+        } else {
+            canMark = true;
+        }
 
         List<WebPage> resultList = dataAccessObject.getByStringValue(WebPage.class, "page_url", url);
 
         WebPage webPage;
+        WebPageWrapper webPageWrapper = new WebPageWrapper();
 
         if(resultList.isEmpty()) {
             webPage = new WebPage();
@@ -43,11 +63,14 @@ public class FakeNewsRestController {
             webPage = resultList.get(0);
         }
 
+        webPageWrapper.setWebpage(webPage);
+        webPageWrapper.setCanMark(canMark);
+
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
         responseHeaders.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        return ResponseEntity.ok().headers(responseHeaders).body(webPage);
+        return ResponseEntity.ok().headers(responseHeaders).body(webPageWrapper);
     }
 
 
@@ -56,10 +79,10 @@ public class FakeNewsRestController {
      * value == 0 -> ocena fake, value != 0 -> ocena notFake
      *
      */
-    @PostMapping("/webpage/{url}/mark/{value}")
-    public ResponseEntity<Boolean> markWebPage(@PathVariable String url, @PathVariable int value, @RequestParam String ip, @RequestParam String domain){
+    @PostMapping("/webpage/{url}/mark/{value}/{comment}")
+    public void markWebPage(@PathVariable String url, @PathVariable int value, @PathVariable String comment, @RequestParam String ip, @RequestParam String domain){
 
-        System.out.println("WESZŁO DO INKREMENTACJI FAKE/NOTFAKE");
+        System.out.println("WESZŁO DO OCENIANIA STRONY");
 
         List<UserConnection> userLogs = dataAccessObject.getByStringValue(UserConnection.class, "ip", ip);
         UserConnection userConnection = null;
@@ -86,7 +109,7 @@ public class FakeNewsRestController {
         responseHeaders.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
         if(!canMark)
-            return ResponseEntity.ok().headers(responseHeaders).body(canMark);
+            return;
 
 
         List<WebPage> webPages = dataAccessObject.getByStringValue(WebPage.class, "page_url", url);
@@ -121,7 +144,8 @@ public class FakeNewsRestController {
 
         dataAccessObject.save(userConnection);
 
-        return ResponseEntity.ok().headers(responseHeaders).body(canMark);
+        if(!comment.equals("null2"))
+            leaveComment(url, comment);
     }
 
 
@@ -132,7 +156,7 @@ public class FakeNewsRestController {
     @PostMapping("/webpage/{url}/add-comment/{comment}")
     public void leaveComment(@PathVariable String url, @PathVariable String comment){
 
-        System.out.println("WESZŁO DO ZAPISU KOMENTARZA");
+        System.out.println("WESZŁO DO ZAPISU KOMENTARZA WEWNATRZ OCENY STRONY");
 
         List<WebPage> webPages = dataAccessObject.getByStringValue(WebPage.class, "page_url", url);
 
