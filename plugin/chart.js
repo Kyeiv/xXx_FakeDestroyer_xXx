@@ -104,6 +104,16 @@ function fun() {
         chrome.storage.sync.get(['noFake'], function (result) {
             noFake = result.noFake;
 
+            var pr;
+            if(!fake){
+                pr = 0;
+               }
+               else{
+                pr = fake/(fake+noFake)*100;
+               } 
+            var x = document.getElementById("rejtio");
+            x.innerHTML = pr.toFixed(0);         
+
             var myVinyls = {
                 "nofake": noFake,
                 "fake": fake
