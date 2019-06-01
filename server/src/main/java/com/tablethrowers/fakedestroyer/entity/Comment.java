@@ -24,6 +24,9 @@ public class Comment {
     @Column(name="dislikes")
     private int dislikes;
 
+    @Column(name="comment_type")
+    private int type;
+
     @JsonIgnore
     @JoinColumn(name="webpage_id")
     @ManyToOne
@@ -33,10 +36,11 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(String description, int likes, int dislikes, WebPage webPage) {
+    public Comment(String description, int likes, int dislikes, int type, WebPage webPage) {
         this.description = description;
         this.likes = likes;
         this.dislikes = dislikes;
+        this.type = type;
         this.webPage = webPage;
     }
 
@@ -70,6 +74,14 @@ public class Comment {
 
     public void setDislikes(int dislikes) {
         this.dislikes = dislikes;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 
     public WebPage getWebPage() {

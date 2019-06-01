@@ -163,7 +163,7 @@ public class FakeNewsRestController {
         dataAccessObject.save(userConnection);
 
         if (!comment.equals("null2"))
-            leaveComment(url, comment);
+            leaveComment(url, comment, value);
     }
 
 
@@ -171,8 +171,8 @@ public class FakeNewsRestController {
      * Wysyłanie komentarza do konkretnej strony - jak nie istnieje to sie tworzy i dodaje pierwszy komentarz
      *
      */
-    @PostMapping("/webpage/{url}/add-comment/{comment}")
-    public void leaveComment(@PathVariable String url, @PathVariable String comment) {
+    @PostMapping("/webpage/{url}/add-comment/{comment}/type/{type}")
+    public void leaveComment(@PathVariable String url, @PathVariable String comment, @PathVariable int type) {
 
         System.out.println("WESZŁO DO ZAPISU KOMENTARZA WEWNATRZ OCENY STRONY");
 
@@ -198,6 +198,7 @@ public class FakeNewsRestController {
         newComment.setDescription(comment);
         newComment.setDislikes(0);
         newComment.setLikes(0);
+        newComment.setType(type);
 
         dataAccessObject.save(newComment);
     }
@@ -207,8 +208,8 @@ public class FakeNewsRestController {
      * Pobieranie komentarzy dla wybranego urla
      *
      */
-    @GetMapping("/comment/{url}")
-    public ResponseEntity<List<Comment>> getCommentsForWebPage(@PathVariable String url) {
+    @GetMapping("/comment/{url}/type/{type}")
+    public ResponseEntity<List<Comment>> getCommentsForWebPage(@PathVariable String url, @PathVariable int type) {
 
         WebPage webPage = dataAccessObject.getByStringValue(WebPage.class, "page_url", url).get(0);
 
@@ -218,7 +219,13 @@ public class FakeNewsRestController {
 
         System.out.println("WESZŁO DO POBIERANIA KOMENTARZY DO URLA");
 
-        return ResponseEntity.ok().headers(responseHeaders).body(webPage.getComments());
+        List<Comment> comments = new ArrayList<>();
+
+        for(Comment c : webPage.getComments())
+            if(c.getType() == type)
+                comments.add(c);
+
+        return ResponseEntity.ok().headers(responseHeaders).body(comments);
     }
 
 
