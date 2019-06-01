@@ -70,7 +70,7 @@ var Piechart = function (options) {
 
     }
 }
-setInterval("fun();", 500);
+setInterval("fun();", 50);
 
 
 window.colorTab = ["green", "red"];

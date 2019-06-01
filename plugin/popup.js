@@ -39,8 +39,9 @@ btnNoFake.addEventListener("click", function(){
 togBckGr.addEventListener("click", function(){
     if(flagColor==true)
       {	
+        console.log("0");
         flagColor=false;
-        document.body.style.background="#FdFdFd";
+        document.body.style.background="#fafafa";
         var text = document.getElementsByClassName('ptag');
         for(var i=0; i<text.length; i++){
           text[i].style.color = "black";
@@ -53,6 +54,7 @@ togBckGr.addEventListener("click", function(){
       }
     else
       {
+        console.log("1");
         flagColor=true;
         document.body.style.background="#404040";
         var text = document.getElementsByClassName('ptag');
@@ -61,8 +63,8 @@ togBckGr.addEventListener("click", function(){
         }
         document.getElementById('descr').style.backgroundColor='#A7A7A7';
         document.getElementById('descr').style.borderColor = "black";
-       	window.colorTab[0]="yellow";
-        window.colorTab[1]="orange";
+       	window.colorTab[0]="blue";
+        window.colorTab[1]="purple";
         console.log(window.colorTab);
       }
 })
