@@ -159,7 +159,7 @@ togBckGr.addEventListener("click", function(){
         console.log("0");
         flagColor=false;
         document.body.style.background="#fafafa";
-        var text = document.getElementsByClassName('ptag');
+        var text = document.getElementsByTagName('p');
         for(var i=0; i<text.length; i++){
           text[i].style.color = "black";
         }
@@ -174,7 +174,7 @@ togBckGr.addEventListener("click", function(){
         console.log("1");
         flagColor=true;
         document.body.style.background="#404040";
-        var text = document.getElementsByClassName('ptag');
+        var text = document.getElementsByTagName('p');
         for(var i=0; i<text.length; i++){
           text[i].style.color = "white";
         }
