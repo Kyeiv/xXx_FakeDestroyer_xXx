@@ -17,7 +17,7 @@
   
   if(confirm(response)){
   	alert("ZOSTAJESZ TUTAJ NA WŁASNĄ ODPOWIEDZIALNOŚĆ!")
-    browser.runtime.reload();
+    document.location.reload(true);
   }
   else{
     chrome.tabs.goBack();
