@@ -279,7 +279,7 @@ public class FakeNewsRestController {
             wpw.setFake(wp.getFake());
             wpw.setNotFake(wp.getNotFake());
             wpw.setPageUrl(wp.getPage_url());
-            wpw.setRatio(zaokraglanieDouble(Double.valueOf(wpw.getFake())/Double.valueOf(wpw.getFake() + wpw.getNotFake()) * 100.0, 2));
+            wpw.setRatio(zaokraglanieDouble(Double.valueOf(wpw.getNotFake())/Double.valueOf(wpw.getFake() + wpw.getNotFake()) * 100.0, 2));
             resultList2.add(wpw);
         }
 
