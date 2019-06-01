@@ -14,13 +14,29 @@ var flagColor = false;
   alert("Hello! You clicked send button");
 })*/
 
+chrome.storage.sync.get(['mark'], function (result) {
+  if(result.mark){
+    	btnFake.disabled=false;
+      	btnFake.classList.remove("btnClicked");
+   		btnNoFake.disabled=false;
+     	btnNoFake.classList.remove("btnClicked");
+  }
+  else{
+    	btnFake.disabled=true;
+      	btnFake.classList.add("btnClicked");
+   		btnNoFake.disabled=true;
+     	btnNoFake.classList.add("btnClicked");
+  	  }
+});
+
+
 btnFake.addEventListener("click", function(){
   if(btnNoFake.disabled==true)
     {
       btnNoFake.disabled=false;
       btnNoFake.classList.remove("btnClicked");
     }
-        btnFake.disabled=true;
+      btnFake.disabled=true;
       btnFake.classList.add("btnClicked");
       getLocalIPs(function(ips) {
         
@@ -40,8 +56,11 @@ btnFake.addEventListener("click", function(){
             });
             var json = {"ip":ips.join('\n '), "domain":result.path};
             $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/0/"+desc,json,function(data, status){
-              alert(result.path);
               console.log("sikorka");
+              btnFake.disabled=true;
+      		  btnFake.classList.add("btnClicked");
+   			  btnNoFake.disabled=true;
+     		  btnNoFake.classList.add("btnClicked");
             });
         });
       });
@@ -74,8 +93,11 @@ btnNoFake.addEventListener("click", function(){
             });
             var json = {"ip":ips.join('\n '), "domain":result.path};
             $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/1/"+desc,json,function(data, status){
-              alert(result.path);
               console.log("sikorka");
+              btnFake.disabled=true;
+      		  btnFake.classList.add("btnClicked");
+   			  btnNoFake.disabled=true;
+     		  btnNoFake.classList.add("btnClicked");
             });
         });
       });

@@ -6,6 +6,10 @@ getLocalIPs(function(ips) {
     var raw = data.webpage;
     window.fake_ = raw["fake"];
     window.noFake_ = raw["notFake"];
+    //var canMark = data.canMark;
+    chrome.storage.sync.set({mark: data["canMark"]}, function() {
+      console.log('mark is set to ' + data["canMark"]);
+    });
     chrome.storage.sync.set({fake: raw["fake"]}, function() {
       console.log('fake is set to ' + raw["fake"]);
     });
@@ -15,6 +19,7 @@ getLocalIPs(function(ips) {
     chrome.storage.sync.set({path: pathname}, function() {
       console.log('path is set to ' + pathname);
     });
+    
     console.log(window.fake_);
     console.log(window.noFake_);
     
