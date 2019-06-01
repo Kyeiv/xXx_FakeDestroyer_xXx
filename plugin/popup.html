@@ -20,6 +20,7 @@
       border-radius:4px;
       border-width:thin;
       border-color:lightgray;
+      resize: none;
     }
 
     p.logo{
@@ -45,11 +46,11 @@
 	</label>
   </div>
   <canvas id="myCanvas" style="margin-top:-50px;margin-left: 28px;"></canvas>
+  <p class="ptag">You can express opinion:</p>
+  <textarea rows="4" cols="50" class="description" id="descr"></textarea>
   <p class="ptag">This site is fake or not fake ?</p>
   <button id="fake" class="myButton">Fake</button>
   <button id="nofake" class="myButton">NoFake</button>
-  <p class="ptag">You can express opinion</p>
-  <textarea rows="4" cols="50" class="description" id="descr"></textarea>
   <script src="popup.js"></script>
   <script src="chart.js"></script>
 

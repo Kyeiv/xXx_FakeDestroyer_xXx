@@ -61,7 +61,7 @@ togBckGr.addEventListener("click", function(){
         for(var i=0; i<text.length; i++){
           text[i].style.color = "white";
         }
-        document.getElementById('descr').style.backgroundColor='#A7A7A7';
+        document.getElementById('descr').style.backgroundColor='#878787';
         document.getElementById('descr').style.borderColor = "black";
        	window.colorTab[0]="blue";
         window.colorTab[1]="purple";
