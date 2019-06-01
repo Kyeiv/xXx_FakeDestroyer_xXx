@@ -10,45 +10,68 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   <script src="jquery.miranda.js"></script>
   <script src="script.js"></script>
+  <script src="navbar.js"></script>
   <meta charset="UTF-8">
   <title>Fake Destroyer</title>
 
 
   <style>
-    body {
-      background-color: #ededed;
-    }
+          body {
+            background-color: #505050;
+        }
 
-    .logo {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
+        .logo {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
 
-    ul {
-      text-align: center;
-    }
+        ul {
+            text-align: center;
+            padding: 0;
+        }
 
-    li {
-      font-size: 20px;
-      margin-left: 60px;
+        li {
+            font-size: 16px;
+            margin-left: 60px;
+            border-radius: 6px;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 0;
+        }
 
-    }
+        li:hover {
+            font-size: 20px;
+            background-color: #cccccc;
+            border-radius: 6px;
+        }
 
-    #firstOpt {
-      margin-left: 10px;
-    }
+        #firstOpt {
+            margin-left: 10px;
+        }
 
+        table {
+            font-size: 14px;
+            -webkit-box-shadow: 1px 6px 28px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 1px 6px 28px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 1px 6px 28px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        th {
+            font-size: 15px;
+            color: #00ffff;
+        }
+       
   </style>
 </head>
 
 <body>
-  <div class="text-center logo">
-    <h1><a style="text-decoration:none; color: black;" href="index_.html">Fake Destroyer</a></h1>
-  </div>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" >
 
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <a class="" style="font-size: 24px; text-decoration: none; font-style: italic;" href="index_.html">Fake Destroyer<span class="sr-only">(current)</span></a>
+
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="best_web.html" id="firstOpt">The best websites <span
@@ -58,10 +81,10 @@
           <a class="nav-link" ref="worst_web.html">The worst websites <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="index_.html">The best comments <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index_.html">Positive comments <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="index_.html">The worst comments <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index_.html">Negative comments <span class="sr-only">(current)</span></a>
         </li>
 
       </ul>

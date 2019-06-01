@@ -14,8 +14,8 @@
 
 
     <style>
-        body {
-            background-color: #ededed;
+     body {
+            background-color: #505050;
         }
 
         .logo {
@@ -25,17 +25,41 @@
 
         ul {
             text-align: center;
+            padding: 0;
         }
 
         li {
-            font-size: 20px;
+            font-size: 16px;
             margin-left: 60px;
-
+            border-radius: 6px;
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 0;
         }
+
+        li:hover {
+            font-size: 20px;
+            background-color: #cccccc;
+            border-radius: 6px;
+        }
+        
 
         #firstOpt {
             margin-left: 10px;
         }
+
+        table {
+            font-size: 14px;
+            -webkit-box-shadow: 1px 6px 28px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 1px 6px 28px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 1px 6px 28px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        th {
+            font-size: 15px;
+            color: #00ffff;
+        }
+       
     </style>
     <script src="jquery.miranda.js"></script>
     <script src="script.js"></script>
@@ -51,30 +75,30 @@
 </head>
 
 <body>
-    <div class="text-center logo">
-        <h1><a style="text-decoration:none; color: black;" href="index_.html">Fake Destroyer</a></h1>
-    </div>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="best_web.html" id="firstOpt">The best websites <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="worst_web.html">The worst websites <span
-                            class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">The best comments <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">The worst comments <span class="sr-only">(current)</span></a>
-                </li>
+                <a class="" style="font-size: 24px; text-decoration: none; font-weight: 550; font-style: italic;" href="index_.html">Fake Destroyer<span class="sr-only">(current)</span></a>
 
-            </ul>
+ 
+                <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                          <a class="nav-link" href="best_web.html" id="firstOpt">The best websites <span
+                              class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                          <a class="nav-link" href="worst_web.html">The worst websites <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                          <a class="nav-link" href="index_.html">Positive comments <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                          <a class="nav-link" href="index_.html">Negative comments <span class="sr-only">(current)</span></a>
+                        </li>
+                
+                      </ul>
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -83,8 +107,8 @@
     </nav>
     <div>
         <div style="width:60%; display: block; margin:auto; margin-top:5em;; " class="content">
-            <h2>Positive comments</h2>
-            <table class="table table-striped">
+            <h1 style="color: white;">Positive comments</h1><br />
+            <table class="table table-striped table-dark">
                 <thead>
                     <tr>
                         <th style="text-align: center;">Comments</th>
