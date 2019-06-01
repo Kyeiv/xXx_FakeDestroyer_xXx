@@ -4,15 +4,15 @@
 
 'use strict';
 
-var btnSend = document.getElementById('send');
+//var btnSend = document.getElementById('send');
 var btnFake = document.getElementById('fake');
 var btnNoFake = document.getElementById('nofake');
 var togBckGr = document.getElementById('togBckGr')
 var flagColor = false;
 
-btnSend.addEventListener("click", function(){
+/*btnSend.addEventListener("click", function(){
   alert("Hello! You clicked send button");
-})
+})*/
 
 btnFake.addEventListener("click", function(){
   if(btnNoFake.disabled==true)
