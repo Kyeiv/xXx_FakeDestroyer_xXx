@@ -9,7 +9,7 @@ getLocalIPs(function(ips) {
     window.noFake_ = raw["notFake"];
     console.log(window.fake_);
     console.log(window.noFake_);
-    document.location.reload(true);
+    //document.location.reload(true);
     console.log(window.noFake_);
     chrome.runtime.sendMessage("Data: " + JSON.stringify(data) + "\nStatus: " 
                                + status+"\nUwaga! \nStrona: \n"+ document.getElementsByTagName('title')[0].innerText
