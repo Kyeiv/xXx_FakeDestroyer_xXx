@@ -36,6 +36,7 @@
   </style>
   <link rel="stylesheet" type="text/css" href="switch_style.css">
   <link rel="stylesheet" type="text/css" href="button_style.css">
+  <link rel="stylesheet" type="text/css" href="slider_style.css">
 
 </head>
 <body>
@@ -52,6 +53,10 @@
   <p class="ptag">This site is fake or not fake ?</p>
   <button id="fake" class="myButton">Fake</button>
   <button id="nofake" class="myButton">NoFake</button>
+  <div class="slidecontainer">
+      <p>   Your toleration: <span id="demo"></span>%</p>
+      <input type="range" min="1" max="100" value="50" id="myRange">
+    </div>
   <script src="popup.js"></script>
   <script src="chart.js"></script>
 </body>
