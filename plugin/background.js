@@ -15,13 +15,15 @@
   
   chrome.runtime.onMessage.addListener(function(response, sender, sendResponse){
   
-  //chrome.browserAction.setTitle("good news");  
-  
   if(confirm(response)){
-  
+  	alert("ZOSTAJESZ TUTAJ NA WŁASNĄ ODPOWIEDZIALNOŚĆ!")
+<<<<<<< HEAD
+    document.location.reload(true);
+=======
+   document.location.reload(true);
+>>>>>>> 34750d53409f5061e9434ae8038e892d6dabbf86
   }
   else{
-    //chrome.tabs.executeScript(null,{"code": "window.history.back()"});
     chrome.tabs.goBack();
   }
   	

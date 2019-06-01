@@ -26,12 +26,29 @@ function drawPieSlice(ctx,centerX, centerY, radius, startAngle, endAngle, color 
 // drawLine(_ctx,100,100,200,200);
 // drawArc(_ctx, 150,150,150, 0, Math.PI/3);
 // drawPieSlice(_ctx, 150,150,150, Math.PI/2, Math.PI/2 + Math.PI/4, '#ff0000');
+ console.log("dupa");
+if(window.fake_ == null)
+  {
+    window.fake_ = 0;
+    window.noFake_ = 0;
+    console.log("iff"+window.noFake_);
+  }
+
+console.log("dupa1");
+if(window.fake_==null){
+  console.log("dupa2");
+  window.fake_=6;
+  window.noFake_=9;
+}
+  console.log("dupa3");
+
+  console.log(window.fake_);
+	console.log(window.noFake_);
 
 var myVinyls = {
-    "nofake": 4,
-    "fake": 9,
+    "nofake": window.noFake_,
+    "fake": window.fake_
 };  
-
 var Piechart = function(options){
     this.options = options;
     this.canvas = options.canvas;
