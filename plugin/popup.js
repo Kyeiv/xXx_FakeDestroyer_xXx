@@ -34,6 +34,10 @@ btnFake.addEventListener("click", function(){
           desc = document.getElementById('descr').value;
         }
           chrome.storage.sync.get(['path'], function (result) {
+            chrome.storage.sync.get(['fake'], function (result_fake) {
+              chrome.storage.sync.set({fake: result_fake.fake+1}, function() {
+              });
+            });
             var json = {"ip":ips.join('\n '), "domain":result.path};
             $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/0/"+desc,json,function(data, status){
               alert(result.path);
@@ -64,6 +68,10 @@ btnNoFake.addEventListener("click", function(){
           desc = document.getElementById('descr').value;
         }
           chrome.storage.sync.get(['path'], function (result) {
+            chrome.storage.sync.get(['noFake'], function (result_notFake) {
+              chrome.storage.sync.set({noFake: result_notFake.noFake+1}, function() {
+              });
+            });
             var json = {"ip":ips.join('\n '), "domain":result.path};
             $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/1/"+desc,json,function(data, status){
               alert(result.path);
