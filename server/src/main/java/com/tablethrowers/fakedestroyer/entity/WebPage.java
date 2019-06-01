@@ -110,4 +110,15 @@ public class WebPage {
         comments.remove(comment);
         comment.setWebPage(null);
     }
+
+    @Override
+    public String toString() {
+        return "WebPage{" +
+                "id=" + id +
+                ", page_url='" + page_url + '\'' +
+                ", fake=" + fake +
+                ", notFake=" + notFake +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }
