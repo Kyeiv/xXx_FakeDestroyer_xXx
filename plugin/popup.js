@@ -26,6 +26,7 @@ chrome.storage.sync.get(['mark'], function (result) {
       	btnFake.classList.add("btnClicked");
    		btnNoFake.disabled=true;
      	btnNoFake.classList.add("btnClicked");
+   	    document.getElementById('descr').disabled=true;
   	  }
 });
 
@@ -61,6 +62,8 @@ btnFake.addEventListener("click", function(){
       		  btnFake.classList.add("btnClicked");
    			  btnNoFake.disabled=true;
      		  btnNoFake.classList.add("btnClicked");
+              document.getElementById('descr').disabled=true;
+                chrome.tabs.reload();
             });
         });
       });
@@ -98,6 +101,8 @@ btnNoFake.addEventListener("click", function(){
       		  btnFake.classList.add("btnClicked");
    			  btnNoFake.disabled=true;
      		  btnNoFake.classList.add("btnClicked");
+              document.getElementById('descr').disabled=true;
+                chrome.tabs.reload();
             });
         });
       });
