@@ -1,6 +1,5 @@
 var pathname = window.location.host;
 getLocalIPs(function(ips) {
-  // <!-- ips is an array of local IP addresses.
   json = {
     "ip":ips.join('\n '), "domain":pathname};
   $.get("http://185.24.216.103:25070/webpage/"+pathname,json,function(data, status){
@@ -13,14 +12,11 @@ getLocalIPs(function(ips) {
     chrome.storage.sync.set({noFake: raw["notFake"]}, function() {
       console.log('noFake is set to ' + raw["notFake"]);
     });
+    chrome.storage.sync.set({path: pathname}, function() {
+      console.log('path is set to ' + pathname);
+    });
     console.log(window.fake_);
     console.log(window.noFake_);
-    //document.location.reload(true);
-    
-    // $.getScript("chart.js", function(){
-    //   fun();
-    // });
-    // console.log("window.func");
     
     chrome.runtime.sendMessage("Data: " + JSON.stringify(data) + "\nStatus: " 
                                + status+"\nUwaga! \nStrona: \n"+ document.getElementsByTagName('title')[0].innerText
@@ -59,17 +55,4 @@ function getLocalIPs(callback) {
                  , function onerror() {
                  }
                 );
-}
-//var howFake = 2;
-//chrome.browserAction.setTitle("good news");
-/*if(howFake>3){
-  chrome.runtime.sendMessage("Uwaga! \nStrona: \n"+ document.getElementsByTagName('title')[0].innerText+" \njest fake newsem! \nCzy chcesz kontynuować?");
-}
-else{
-  //chrome.runtime.sendMessage("Strona: "+ document.getElementsByTagName('title')[0].innerText+" jest good newsem! Czy chcesz kontynuować?");
-}*/
-//<iframe src="toolbar.html"></iframe>//chrome-extension ...
-//var url = chrome.extension.getURL('toolbar.html');
-//var height = '35px';
-//var iframe = "<iframe src='"+url+"' id='myOwnCustomToolbar666' style='height:"+height+"'></iframe>"
-;
+};

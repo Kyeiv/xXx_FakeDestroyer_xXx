@@ -4,15 +4,15 @@
 
 'use strict';
 
-var btnSend = document.getElementById('send');
+//var btnSend = document.getElementById('send');
 var btnFake = document.getElementById('fake');
 var btnNoFake = document.getElementById('nofake');
-var togBckGr = document.getElementById('togBckGr')
+var togBckGr = document.getElementById('togBckGr');
 var flagColor = false;
 
-btnSend.addEventListener("click", function(){
+/*btnSend.addEventListener("click", function(){
   alert("Hello! You clicked send button");
-})
+})*/
 
 btnFake.addEventListener("click", function(){
   if(btnNoFake.disabled==true)
@@ -21,8 +21,26 @@ btnFake.addEventListener("click", function(){
       btnNoFake.classList.remove("btnClicked");
     }
         btnFake.disabled=true;
-  		btnFake.classList.add("btnClicked");
- // alert("Hello! You clicked fake button");
+      btnFake.classList.add("btnClicked");
+      getLocalIPs(function(ips) {
+        
+        var desc;
+        if(document.getElementById('descr').value == "")
+        {
+          desc ="null2";
+        }
+        else
+        {
+          desc = document.getElementById('descr').value;
+        }
+          chrome.storage.sync.get(['path'], function (result) {
+            var json = {"ip":ips.join('\n '), "domain":result.path};
+            $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/0/"+desc,json,function(data, status){
+              alert(result.path);
+              console.log("sikorka");
+            });
+        });
+      });
 })
 
 btnNoFake.addEventListener("click", function(){
@@ -33,14 +51,34 @@ btnNoFake.addEventListener("click", function(){
     }
         btnNoFake.disabled=true;
   		btnNoFake.classList.add("btnClicked");
- // alert("Hello! You clicked nofake button");
+      var pathname = window.location.host;
+      getLocalIPs(function(ips) {
+        
+        var desc;
+        if(document.getElementById('descr').value == "")
+        {
+          desc ="null2";
+        }
+        else
+        {
+          desc = document.getElementById('descr').value;
+        }
+          chrome.storage.sync.get(['path'], function (result) {
+            var json = {"ip":ips.join('\n '), "domain":result.path};
+            $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/1/"+desc,json,function(data, status){
+              alert(result.path);
+              console.log("sikorka");
+            });
+        });
+      });
 })
 
 togBckGr.addEventListener("click", function(){
     if(flagColor==true)
       {	
+        console.log("0");
         flagColor=false;
-        document.body.style.background="#FdFdFd";
+        document.body.style.background="#fafafa";
         var text = document.getElementsByClassName('ptag');
         for(var i=0; i<text.length; i++){
           text[i].style.color = "black";
@@ -53,17 +91,51 @@ togBckGr.addEventListener("click", function(){
       }
     else
       {
+        console.log("1");
         flagColor=true;
         document.body.style.background="#404040";
         var text = document.getElementsByClassName('ptag');
         for(var i=0; i<text.length; i++){
           text[i].style.color = "white";
         }
-        document.getElementById('descr').style.backgroundColor='#A7A7A7';
+        document.getElementById('descr').style.backgroundColor='#878787';
         document.getElementById('descr').style.borderColor = "black";
-       	window.colorTab[0]="yellow";
-        window.colorTab[1]="orange";
+       	window.colorTab[0]="blue";
+        window.colorTab[1]="purple";
         console.log(window.colorTab);
       }
 })
+
+
+function getLocalIPs(callback) {
+  var ips = [];
+  var RTCPeerConnection = window.RTCPeerConnection ||
+      window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+  var pc = new RTCPeerConnection({
+    // Don't specify any stun/turn servers, otherwise you will
+    // also find your public IP addresses.
+    iceServers: []
+  }
+                                );
+  // Add a media line, this is needed to activate candidate gathering.
+  pc.createDataChannel('');
+  // onicecandidate is triggered whenever a candidate has been found.
+  pc.onicecandidate = function(e) {
+    if (!e.candidate) {
+      // Candidate gathering completed.
+      pc.close();
+      callback(ips);
+      return;
+    }
+    var ip = /^candidate:.+ (\S+) \d+ typ/.exec(e.candidate.candidate)[1];
+    if (ips.indexOf(ip) == -1) // avoid duplicate entries (tcp/udp)
+      ips.push(ip);
+  };
+  pc.createOffer(function(sdp) {
+    pc.setLocalDescription(sdp);
+  }
+                 , function onerror() {
+                 }
+                );
+};
 
