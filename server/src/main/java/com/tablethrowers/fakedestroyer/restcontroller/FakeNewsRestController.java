@@ -247,6 +247,17 @@ public class FakeNewsRestController {
 
         List<WebPage> webPages = dataAccessObject.getAll(WebPage.class);
 
+        List<Integer> indexes = new ArrayList<>();
+
+        for(WebPage wp : webPages){
+            if( wp.getNotFake() + wp.getFake() < 20 )
+                indexes.add(webPages.indexOf(wp));
+        }
+
+        for(int i = 0; i < indexes.size(); i++){
+            webPages.remove(indexes.get(i)-i);
+        }
+
         if(typ == 0)
             Collections.sort(webPages);
         else
@@ -258,8 +269,7 @@ public class FakeNewsRestController {
             numb = webPages.size();
 
         for(int i = 0; i < numb; i++)
-            if(webPages.get(i).getFake() + webPages.get(i).getNotFake() > 20)
-                resultList.add(webPages.get(i));
+            resultList.add(webPages.get(i));
 
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
