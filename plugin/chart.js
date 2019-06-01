@@ -80,6 +80,13 @@ var slider = document.getElementById("myRange");
         slider.style.left = "25px";
         slider.style.width = "250px"
         slider.style.bottom = "5px"
+        chrome.storage.sync.get(['sliderValue'], function (result) {
+            if(result.sliderValue)
+            {
+                slider.value = result.sliderValue;
+                output.innerHTML = result.sliderValue;
+            }
+        });
         
         slider.oninput = function() {
           output.innerHTML = slider.value;
