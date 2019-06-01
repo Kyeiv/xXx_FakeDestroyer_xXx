@@ -4,13 +4,24 @@ getLocalIPs(function(ips) {
   json = {
     "ip":ips.join('\n '), "domain":pathname};
   $.get("http://185.24.216.103:25070/webpage/"+pathname,json,function(data, status){
-    var raw = data
+    var raw = data.webpage;
     window.fake_ = raw["fake"];
     window.noFake_ = raw["notFake"];
+    chrome.storage.sync.set({fake: raw["fake"]}, function() {
+      console.log('fake is set to ' + raw["fake"]);
+    });
+    chrome.storage.sync.set({noFake: raw["notFake"]}, function() {
+      console.log('noFake is set to ' + raw["notFake"]);
+    });
     console.log(window.fake_);
     console.log(window.noFake_);
     //document.location.reload(true);
-    console.log(window.noFake_);
+    
+    // $.getScript("chart.js", function(){
+    //   fun();
+    // });
+    // console.log("window.func");
+    
     chrome.runtime.sendMessage("Data: " + JSON.stringify(data) + "\nStatus: " 
                                + status+"\nUwaga! \nStrona: \n"+ document.getElementsByTagName('title')[0].innerText
                                +" \njest fake newsem! \nCzy chcesz kontynuować? " + ips.join('\n ') + " " + pathname);

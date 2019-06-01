@@ -40,7 +40,6 @@ togBckGr.addEventListener("click", function(){
     if(flagColor==true)
       {	
         flagColor=false;
-        console.log("1");
         document.body.style.background="#FdFdFd";
         var text = document.getElementsByClassName('ptag');
         for(var i=0; i<text.length; i++){
@@ -55,7 +54,6 @@ togBckGr.addEventListener("click", function(){
     else
       {
         flagColor=true;
-        console.log("0");
         document.body.style.background="#404040";
         var text = document.getElementsByClassName('ptag');
         for(var i=0; i<text.length; i++){
