@@ -59,12 +59,24 @@ function fun() {
                 ctx.lineCap = "round";
                 ctx.strokeStyle = "#555555";
                 ctx.moveTo(myCanvas.width / 2, myCanvas.height);
-                ctx.lineTo(38, 38);
-                ctx.stroke();
+                // var x = myCanvas.width / 2 + 104.65 * Math.cos(calculateDegrees(pr.toFixed(0)));
+                // var y = myCanvas.height + 104.65 * Math.sin(calculateDegrees(pr.toFixed(0)));
 
+                var x = 112 + 104.65 * Math.cos(calculate(pr.toFixed(0)));
+                var y = 112 + 104.65 * Math.sin(calculate(pr.toFixed(0)));
+
+                console.log(x + "::" + y);
+
+                ctx.lineTo(x, y);
+                ctx.stroke();
+            }
                    
         });
     });
+}
+
+function calculate(percentage){
+    return (1.8 * percentage + 180) * 3.1415 / 180.0;
 }
 
 
