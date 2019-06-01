@@ -4,6 +4,7 @@ import com.tablethrowers.fakedestroyer.entity.Comment;
 import com.tablethrowers.fakedestroyer.entity.UserConnection;
 import com.tablethrowers.fakedestroyer.entity.WebPage;
 import com.tablethrowers.fakedestroyer.util.IDataAccessObject;
+import com.tablethrowers.fakedestroyer.util.WebPageFrontendWrapper;
 import com.tablethrowers.fakedestroyer.util.WebPageWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -243,20 +244,20 @@ public class FakeNewsRestController {
     }
 
     @GetMapping("/webpage/number/{numb}/type/{typ}")
-    public ResponseEntity<List<WebPage>> getAllWebPages(@PathVariable int numb, @PathVariable int typ) {
+    public ResponseEntity<List<WebPageFrontendWrapper>> getAllWebPages(@PathVariable int numb, @PathVariable int typ) {
 
         List<WebPage> webPages = dataAccessObject.getAll(WebPage.class);
 
         List<Integer> indexes = new ArrayList<>();
 
-        for(WebPage wp : webPages){
-            if( wp.getNotFake() + wp.getFake() < 20 )
-                indexes.add(webPages.indexOf(wp));
-        }
-
-        for(int i = 0; i < indexes.size(); i++){
-            webPages.remove(indexes.get(i)-i);
-        }
+//        for(WebPage wp : webPages){
+//            if( wp.getNotFake() + wp.getFake() < 20 )
+//                indexes.add(webPages.indexOf(wp));
+//        }
+//
+//        for(int i = 0; i < indexes.size(); i++){
+//            webPages.remove(indexes.get(i)-i);
+//        }
 
         if(typ == 0)
             Collections.sort(webPages);
@@ -271,10 +272,22 @@ public class FakeNewsRestController {
         for(int i = 0; i < numb; i++)
             resultList.add(webPages.get(i));
 
+        List<WebPageFrontendWrapper> resultList2 = new ArrayList<>();
+
+        for(WebPage wp : resultList){
+            WebPageFrontendWrapper wpw = new WebPageFrontendWrapper();
+            wpw.setFake(wp.getFake());
+            wpw.setNotFake(wp.getNotFake());
+            wpw.setPageUrl(wp.getPage_url());
+            wpw.setRatio(Double.valueOf(wpw.getFake())/Double.valueOf(wpw.getFake() + wpw.getNotFake()));
+            resultList2.add(wpw);
+        }
+
+
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
         responseHeaders.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-        return ResponseEntity.ok().headers(responseHeaders).body(resultList);
+        return ResponseEntity.ok().headers(responseHeaders).body(resultList2);
     }
 };
