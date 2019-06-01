@@ -1,7 +1,7 @@
 {
-  "name": "Getting Started Example",
+  "name": "Fake Destroyer",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "description": "Destroy fake news!",
   "permissions": ["activeTab", "declarativeContent", "storage", "storage","tabs", "http://*/*", "https://*/*" , "http://ajax.googleapis.com/", "<all_urls>", "webRequest"],
   "background": {
     "scripts": ["background.js"],
@@ -10,10 +10,10 @@
   "page_action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
+      "16": "images/destr16.png",
+      "32": "images/destr32.png",
+      "48": "images/destr48.png",
+      "128": "images/destr128.png"
     }
   },
    "content_scripts": [
@@ -27,10 +27,10 @@
  	"style.css"
  ],
   "icons": {
-    "16": "images/get_started16.png",
-    "32": "images/get_started32.png",
-    "48": "images/get_started48.png",
-    "128": "images/get_started128.png"
+      "16": "images/destr16.png",
+      "32": "images/destr32.png",
+      "48": "images/destr48.png",
+      "128": "images/destr128.png"
   },
 
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",

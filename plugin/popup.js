@@ -27,6 +27,7 @@ chrome.storage.sync.get(['mark'], function (result) {
    		btnNoFake.disabled=true;
      	btnNoFake.classList.add("btnClicked");
    	    document.getElementById('descr').disabled=true;
+    	document.getElementById('opinion').value="You have made your decision today.";
   	  }
 });
 
@@ -58,14 +59,17 @@ btnFake.addEventListener("click", function(){
             var json = {"ip":ips.join('\n '), "domain":result.path};
             $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/0/"+desc,json,function(data, status){
               console.log("sikorka");
-              btnFake.disabled=true;
-      		  btnFake.classList.add("btnClicked");
-   			  btnNoFake.disabled=true;
-     		  btnNoFake.classList.add("btnClicked");
-              document.getElementById('descr').disabled=true;
+
+
                 chrome.tabs.reload();
             });
         });
+              btnFake.disabled=true;
+              btnFake.classList.add("btnClicked");
+   			  btnNoFake.disabled=true;
+     		  btnNoFake.classList.add("btnClicked");
+              document.getElementById('descr').disabled=true;
+              document.getElementById('opinion').value="You have made your decision today.";
       });
 })
 
@@ -97,14 +101,18 @@ btnNoFake.addEventListener("click", function(){
             var json = {"ip":ips.join('\n '), "domain":result.path};
             $.post("http://185.24.216.103:25070/webpage/"+result.path+"/mark/1/"+desc,json,function(data, status){
               console.log("sikorka");
+
+                chrome.tabs.reload();
+            });
+        });
+        //---
               btnFake.disabled=true;
       		  btnFake.classList.add("btnClicked");
    			  btnNoFake.disabled=true;
      		  btnNoFake.classList.add("btnClicked");
               document.getElementById('descr').disabled=true;
-                chrome.tabs.reload();
-            });
-        });
+              document.getElementById('opinion').value="You have made your decision today.";
+        //---
       });
 })
 
