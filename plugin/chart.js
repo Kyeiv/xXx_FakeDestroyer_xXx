@@ -73,6 +73,17 @@ var Piechart = function (options) {
 }
 setInterval("fun();", 50);
 
+var slider = document.getElementById("myRange");
+        var output = document.getElementById("demo");
+        output.innerHTML = slider.value;
+        slider.style.position = "absolute";
+        slider.style.left = "25px";
+        slider.style.width = "250px"
+        slider.style.bottom = "5px"
+        
+        slider.oninput = function() {
+          output.innerHTML = slider.value;
+        }
 
 window.colorTab = ["green", "red"];
 function fun() {
@@ -83,12 +94,6 @@ function fun() {
         chrome.storage.sync.get(['noFake'], function (result) {
             noFake = result.noFake;
 
-            //console.log(fake);
-            //console.log(noFake);
-
-
-		
-          
             var myVinyls = {
                 "nofake": noFake,
                 "fake": fake
