@@ -14,7 +14,7 @@ getLocalIPs(function(ips) {
   chrome.storage.sync.get(['path'], function (result) {
   var json = {
     "ip":ips.join('\n '), "domain":result.path};
-  $.get("http://77.55.217.170:25070/webpage/"+result.path,json,function(data, status){
+  $.get("https://sarchacode.pl:25070/webpage/"+result.path,json,function(data, status){
     var raw = data.webpage;
     var fak = raw["fake"];
     var nfak = raw["notFake"];
@@ -98,7 +98,7 @@ btnFake.addEventListener("click", function(){
               });
             });
             var json = {"ip":ips[ips.length-1], "domain":result.path};
-            $.post("http://77.55.217.170:25070/webpage/"+result.path+"/mark/0/"+desc,json,function(data, status){
+            $.post("https://sarchacode.pl:25070/webpage/"+result.path+"/mark/0/"+desc,json,function(data, status){
               console.log("sikorka");
 
 
@@ -140,7 +140,7 @@ btnNoFake.addEventListener("click", function(){
               });
             });
             var json = {"ip":ips[ips.length-1], "domain":result.path};
-            $.post("http://77.55.217.170:25070/webpage/"+result.path+"/mark/1/"+desc,json,function(data, status){
+            $.post("https://sarchacode.pl:25070/webpage/"+result.path+"/mark/1/"+desc,json,function(data, status){
               console.log("sikorka");
 
                 chrome.tabs.reload();
